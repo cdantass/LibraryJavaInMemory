@@ -8,17 +8,17 @@ Sistema simples de biblioteca desenvolvido em **Java**, utilizando arquitetura e
 
 ## Funcionalidades
 
-Cadastro de clientes
+- Cadastro de clientes
 
-Cadastro de livros
+- Cadastro de livros
 
-Criação de pedidos de empréstimo
+- Criação de pedidos de empréstimo
 
-Confirmação de empréstimo
+- Confirmação de empréstimo
 
-Cancelamento de empréstimo
+- Cancelamento de empréstimo
 
-Listagem de pedidos
+- Listagem de pedidos
 
 Regra de negócio que impede emprestar um livro já emprestado
 
