@@ -1,4 +1,4 @@
-# Library Java In-Memory
+# Library Java InMemory
 
 Sistema simples de biblioteca desenvolvido em **Java**, utilizando arquitetura em camadas (**Model, Repository e Service**).
 
