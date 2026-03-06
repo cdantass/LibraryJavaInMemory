@@ -20,7 +20,7 @@ Sistema simples de biblioteca desenvolvido em **Java**, utilizando arquitetura e
 
 - Listagem de pedidos
 
-Regra de negócio que impede emprestar um livro já emprestado
+- Regra de negócio que impede emprestar um livro já emprestado
 
 ## Tecnologias
 - Java
