@@ -13,11 +13,9 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client createClient(Long id, String name){
-        Client client = new Client(id, name);
-        clientRepository.save(client);
-
-        return client;
+    public Client createClient(String name){
+        Client client = new Client(null, name);
+        return clientRepository.save(client);
     }
     public List<Client> findAllClients(){
         return clientRepository.findAll();

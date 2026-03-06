@@ -5,14 +5,22 @@ import caua.model.Order;
 import caua.model.StatusOrder;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class OrderInMemory implements OrderRepository{
 
     private final Map<Long, Order> orderMap = new HashMap<>();
+    private final AtomicLong idGenerator = new AtomicLong(1);
+
 
     @Override
-    public void save(Order order){
+    public Order save(Order order){
+        if(order.getId() == null){
+            order.setId(idGenerator.getAndIncrement());
+        }
         orderMap.put(order.getId(), order);
+
+        return order;
     }
 
     @Override

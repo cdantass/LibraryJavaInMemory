@@ -16,17 +16,15 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order createOrder(Long id, Client client, Book book) {
+    public Order createOrder(Client client, Book book) {
 
         boolean bookAlreadyBorrowed = orderRepository.findByBook(book).stream().anyMatch(order -> order.getStatus() == StatusOrder.CONFIRMED);
 
         if (bookAlreadyBorrowed){
             throw new IllegalStateException("Book already borrowed");
         }
-        Order order = new Order(id, client, book);
-        orderRepository.save(order);
-
-        return order;
+        Order order = new Order(null, client, book);
+        return orderRepository.save(order);
     }
 
     public List<Order> findAllOrders(){

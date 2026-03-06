@@ -43,4 +43,8 @@ public class Order {
         }
         this.status = StatusOrder.CANCELED;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

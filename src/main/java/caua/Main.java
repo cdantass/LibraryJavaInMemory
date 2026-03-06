@@ -23,7 +23,7 @@ public class Main {
         BookService bookService = new BookService(bookRepository);
         OrderService orderService = new OrderService(orderRepository);
 
-        while (true){
+        while (true) {
 
             System.out.println("\n=== LIBRARY SYSTEM ===");
             System.out.println("1 - Create Client");
@@ -34,60 +34,56 @@ public class Main {
             System.out.println("6 - List Orders");
             System.out.println("0 - Exit");
 
+            System.out.print("Option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
 
             try {
 
-                switch (option){
+                switch (option) {
 
                     case 1 -> {
-                        System.out.print("Client ID: ");
-                        Long id = scanner.nextLong();
-                        scanner.nextLine();
 
                         System.out.print("Client name: ");
                         String name = scanner.nextLine();
 
-                        clientService.createClient(id, name);
+                        Client client = clientService.createClient(name);
 
-                        System.out.println("Client created.");
+                        System.out.println("Client created with ID: " + client.getId());
                     }
 
                     case 2 -> {
-                        System.out.print("Book ID: ");
-                        Long id = scanner.nextLong();
-                        scanner.nextLine();
 
                         System.out.print("Book title: ");
                         String title = scanner.nextLine();
 
-                        bookService.createBook(id, title);
+                        Book book = bookService.createBook(title);
 
-                        System.out.println("Book created.");
+                        System.out.println("Book created with ID: " + book.getId());
                     }
 
                     case 3 -> {
-                        System.out.print("Order ID: ");
-                        Long orderId = scanner.nextLong();
 
                         System.out.print("Client ID: ");
                         Long clientId = scanner.nextLong();
 
                         System.out.print("Book ID: ");
                         Long bookId = scanner.nextLong();
+                        scanner.nextLine();
 
                         Client client = clientService.findById(clientId);
                         Book book = bookService.findByIdBook(bookId);
 
-                        orderService.createOrder(orderId, client, book);
+                        Order order = orderService.createOrder(client, book);
 
-                        System.out.println("Order created.");
+                        System.out.println("Order created with ID: " + order.getId());
                     }
 
                     case 4 -> {
+
                         System.out.print("Order ID: ");
                         Long orderId = scanner.nextLong();
+                        scanner.nextLine();
 
                         orderService.confirmBorrow(orderId);
 
@@ -95,8 +91,10 @@ public class Main {
                     }
 
                     case 5 -> {
+
                         System.out.print("Order ID: ");
                         Long orderId = scanner.nextLong();
+                        scanner.nextLine();
 
                         orderService.cancelBorrow(orderId);
 
@@ -107,25 +105,33 @@ public class Main {
 
                         List<Order> orders = orderService.findAllOrders();
 
-                        for (Order order : orders){
-                            System.out.println(
-                                    "Order ID: " + order.getId() +
-                                            " | Client: " + order.getClient().getName() +
-                                            " | Book: " + order.getBook().getTitle() +
-                                            " | Status: " + order.getStatus()
-                            );
+                        if (orders.isEmpty()) {
+                            System.out.println("No orders found.");
+                        } else {
+
+                            System.out.println("\n=== ORDERS ===");
+
+                            for (Order order : orders) {
+
+                                System.out.println(
+                                        "Order ID: " + order.getId() +
+                                                " | Client: " + order.getClient().getName() +
+                                                " | Book: " + order.getBook().getTitle() +
+                                                " | Status: " + order.getStatus()
+                                );
+                            }
                         }
                     }
 
                     case 0 -> {
-                        System.out.println("Exiting...");
+                        System.out.println("Exiting system...");
                         return;
                     }
 
-                    default -> System.out.println("Invalid option");
+                    default -> System.out.println("Invalid option.");
                 }
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }

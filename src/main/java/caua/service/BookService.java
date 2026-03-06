@@ -14,12 +14,10 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book createBook(Long id, String title){
+    public Book createBook(String title){
 
-        Book book = new Book(id, title);
-        bookRepository.save(book);
-
-        return book;
+        Book book = new Book(null, title);
+        return bookRepository.save(book);
     }
 
     public Book findByIdBook(Long id){

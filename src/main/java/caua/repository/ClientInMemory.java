@@ -3,14 +3,22 @@ package caua.repository;
 import caua.model.Client;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class ClientInMemory implements ClientRepository{
 
     private final Map<Long, Client> clients = new HashMap<>();
+    private final AtomicLong idGenerator = new AtomicLong(1);
+
 
     @Override
-    public void save(Client client){
+    public Client save(Client client){
+        if(client.getId() == null){
+            client.setId(idGenerator.getAndIncrement());
+        }
         clients.put(client.getId(), client);
+
+        return client;
     }
 
     @Override

@@ -3,14 +3,23 @@ package caua.repository;
 import caua.model.Book;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class BookInMemory implements BookRepository{
 
     private final Map<Long, Book> books = new HashMap<>();
+    private final AtomicLong idGenerator = new AtomicLong(1);
 
     @Override
-    public void save(Book book){
+    public Book save(Book book){
+        if(book.getId() == null){
+            Long id = idGenerator.getAndIncrement();
+            book.setId(id);
+        }
+
         books.put(book.getId(), book);
+
+        return book;
     }
 
     @Override
