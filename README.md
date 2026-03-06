@@ -2,8 +2,9 @@
 
 Sistema simples de biblioteca desenvolvido em **Java**, utilizando arquitetura em camadas (**Model, Repository e Service**).
 
-<img width="321" height="419" alt="image" src="https://github.com/user-attachments/assets/c3c86c65-f17c-473b-983b-7bb1169687ad" />
-
+<p align="center">
+<img width="300" height="350" alt="image" src="https://github.com/user-attachments/assets/c3c86c65-f17c-473b-983b-7bb1169687ad" />
+</p>
 
 ## Funcionalidades
 
@@ -20,6 +21,12 @@ Cancelamento de empréstimo
 Listagem de pedidos
 
 Regra de negócio que impede emprestar um livro já emprestado
+
+## Tecnologias
+- Java
+- Collections
+- Stream API
+- Scanner
 
 ## Execução
 
